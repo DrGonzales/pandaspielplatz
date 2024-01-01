@@ -1,0 +1,18 @@
+###
+
+POST https://search.finanzfluss.de/graphql
+content-type: application/json
+
+{
+    "operationName": "InformerSearchQuery",
+    "variables": {
+        "per": 500,
+        "page": 1,
+        "filter": {},
+        "sort": {
+            "shareClassVolume": "desc"
+        },
+        "q": "msci"
+    },
+    "query": "fragment CoreSearchFields on SearchResult2 {\n  aggregations\n  total\n  unfilteredTotal\n  pages\n  currentPage\n  currentPer\n  __typename\n}\n\nfragment OverviewTableFields on ETF {\n  releaseDate\n  fundVolume\n  shareClassVolume\n  totalExpenseRatio\n  isDistributing\n  replicationMethod\n  currency\n  preferredPerformanceIdId\n  __typename\n}\n\nquery InformerSearchQuery($q: String, $per: Int, $page: Int, $filter: JSON, $sort: JSON) {\n  search(q: $q, per: $per, page: $page, filter: $filter, sort: $sort) {\n    ...CoreSearchFields\n    results {\n      isin\n      name\n      displayName\n      preferredPerformanceIdId\n      ...OverviewTableFields\n      __typename\n    }\n    __typename\n  }\n}\n"
+}
