@@ -66,6 +66,8 @@ requests==2.31.0
 requests-toolbelt==1.0.0
 rfc3986==2.0.0
 rich==13.7.0
+scipy==1.11.4
+seaborn==0.13.1
 selenium==4.16.0
 SimpleWebSocketServer==0.1.2
 six==1.16.0
